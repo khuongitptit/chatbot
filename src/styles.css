@@ -90,6 +90,47 @@
   position: relative;
 }
 
+.voice-container {
+  width: 65%;
+  height: 100%;
+  padding: 30px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.voice-audios {
+  width: 100%;
+}
+
+#bot-audio-visualizer {
+  width: calc(100% - 100px);
+  border-radius: 40px;
+}
+
+#user-audio-visualizer {
+  width: calc(100% - 100px);
+  border-radius: 40px;
+  margin-left: auto;
+}
+
+.exit-voice-btn {
+  width: fit-content;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 13px;
+  background: #ffffff;
+  color: #0db3ff;
+  max-width: 100%;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+.exit-voice-btn:hover {
+  background: #e3dfdf;
+}
+
 .input > form > input[type="text"] {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
@@ -111,7 +152,22 @@
   outline: none;
 }
 
-.input > form > button {
+.input > form > .voice-btn {
+  background-color: transparent;
+  border: 0;
+  border-bottom-right-radius: 10px;
+  box-shadow: none;
+  cursor: pointer;
+  fill: #03a9f4;
+  opacity: 1;
+  outline: none;
+  padding: 14px 16px 12px 16px;
+  position: absolute;
+  right: 30px;
+  top: 0;
+}
+
+.input > form > .send-btn {
   background-color: transparent;
   border: 0;
   border-bottom-right-radius: 10px;
