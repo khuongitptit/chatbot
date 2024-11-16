@@ -170,6 +170,10 @@ function Chatbot() {
 
     // Select a voice
     const voices = window.speechSynthesis.getVoices();
+    console.log(
+      "Voices:",
+      voices.map((v) => v.lang)
+    );
     utterance.voice = voices.find((voice) => voice.lang === "vi-VN");
 
     // Set up canvas for visualization
@@ -284,8 +288,19 @@ function Chatbot() {
           // });
           return setMessages([]);
         }
-        response.data.forEach((message, index) => {
-          speak(message.text, index === response.data.length - 1);
+        const texts = response.data.map((message) => message.text);
+
+        const buttons = response.data
+          .map((message) => message.buttons)
+          .flat()
+          .filter(Boolean);
+        const buttonsWithOrder = buttons
+          .map((b) => b.title)
+          .map((title, index) => `${index + 1}. ${title}`);
+        const allTexts = [...texts, ...buttonsWithOrder];
+
+        allTexts.forEach((text, index) => {
+          speak(text, index === allTexts.length - 1);
         });
         setMessages((prevMessages) => {
           const newMessages = [...prevMessages];
@@ -299,10 +314,7 @@ function Chatbot() {
             "response.data.map(message => message.buttons).flat()",
             response.data.map((message) => message.buttons).flat()
           );
-          const buttons = response.data
-            .map((message) => message.buttons)
-            .flat()
-            .filter(Boolean);
+
           const buttonComponents = buttons ? (
             <div className="btn-container">
               {buttons.map((button, index) => (

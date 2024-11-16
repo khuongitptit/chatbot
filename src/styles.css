@@ -63,6 +63,10 @@
   text-align: left;
 }
 
+.bot-message > div {
+  white-space: pre-line;
+}
+
 .user-message {
   float: right;
   padding: 10px 14px;
