@@ -171,6 +171,11 @@ function Chatbot() {
     // Select a voice
     const voices = window.speechSynthesis.getVoices();
     utterance.voice = voices.find((voice) => voice.lang === "vi-VN");
+    console.log("uttt", voices);
+    console.log(
+      "Voices:",
+      voices.map((v) => v.lang)
+    );
 
     // Set up canvas for visualization
     const canvas = document.getElementById("bot-audio-visualizer");
