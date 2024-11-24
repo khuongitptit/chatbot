@@ -199,16 +199,22 @@ function Chatbot() {
       canvasCtx.strokeStyle = "#000000";
       canvasCtx.beginPath();
 
+      let prevX = 0;
+      let prevY = 0;
       for (let i = 0; i < 100; i++) {
-        const v = Math.random() * 0.5 + 0.5; // Randomize amplitude
+        const v = Math.random() * 0.4 + 0.4; // Randomize amplitude
         const y = v * canvas.height * 0.8; // Scale to canvas height
 
         if (i === 0) {
           canvasCtx.moveTo(x, y);
         } else {
-          canvasCtx.lineTo(x, y);
+          const midX = (prevX + x) / 2; // Midpoint for smoother curve
+          const midY = (prevY + y) / 2;
+          canvasCtx.quadraticCurveTo(prevX, prevY, midX, midY);
         }
 
+        prevX = x;
+        prevY = y;
         x += sliceWidth;
       }
 
